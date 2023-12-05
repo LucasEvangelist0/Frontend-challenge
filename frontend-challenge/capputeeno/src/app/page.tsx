@@ -1,19 +1,25 @@
 "use client"
 
-import Image from 'next/image'
-import styles from './page.module.css'
+import { DefaultPageLayout } from '@/components/default-page-layout'
 import { FilterBar } from '@/components/filter-bar'
 import { ProductsList } from '@/components/products-list'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+import { styled } from 'styled-components'
+
+
+const PageWrapper = styled.main`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`
 
 export default function Home() {
-  const client = new QueryClient()
+
   return (
-    <QueryClientProvider client={client}>
-      <main className={styles.main}>
-        <FilterBar /> 
-        <ProductsList /> 
-      </main>
-    </QueryClientProvider>
+      <DefaultPageLayout>
+        <PageWrapper>
+          <FilterBar /> 
+          <ProductsList /> 
+        </PageWrapper>
+      </DefaultPageLayout>
   )
 }
